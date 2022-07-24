@@ -44,4 +44,5 @@ exports.findStudentbyId = function (student_id, cb) {
 exports.fakeStudentbyInfo = function (student_id, cb) {
 
   cb(student);
+
 }
