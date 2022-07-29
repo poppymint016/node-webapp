@@ -1,0 +1,60 @@
+<!--index.html-->
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Submit</title>
+
+<!--CSS-->
+<link rel="stylesheet" href="/jquery-ui/themes/base/jquery-ui.css">
+
+<!--Javascript-->
+<script src="/jquery/jquery.min.js"></script>
+<script src="/jquery-ui/jquery-ui.min.js"></script>
+
+</head>
+<body>
+    <h1>Hello, Hoola</h1>
+    <form id="my-form">
+        <input type="text" id="txtStudentID" name="txtStudentID" placeholder="รหัสนิสิต" />
+        <br/>
+        <input type="text" id="txtName" name="txtName" placeholder="ชื่อ-นามสกุล" />
+        <br/>
+        <input type="text" id="txtEmail" name="txtEmail" placeholder="Email" />
+        <br/>
+        <input type="password" id="txtPassword" name="txtPassword" placeholder="รหัสผ่าน" />
+        <br/>
+        <input type="button" id="btnSubmit" value="Submit"/>
+    </form>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+      //btnSubmit
+      $('#btnSubmit').click( function(){
+        //console.log("Submit");
+        $.ajax({
+          method: "POST",
+          url: "https://tools.ecpe.nu.ac.th/network/api/register",
+          dataType : 'json',
+          headers: { 
+            'Content-Type': 'application/json',
+            "Accepts": "application/json",
+            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90b29scy5lY3BlLm51LmFjLnRoXC9uZXR3b3JrXC9hcGlcL2xvZ2luIiwiaWF0IjoxNjU4ODQzNDMzLCJleHAiOjE2NTg4NDcwMzMsIm5iZiI6MTY1ODg0MzQzMywianRpIjoiRUd5TGlDeDJIamswcGtyOCIsInN1YiI6NDgsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.NZe2IQzqPl_Idev8eJFyefLxytQV5vsjJuY-hhNCWRg",
+            
+          },
+          data:JSON.stringify( { "name": $('#txtName').val(), "student_id": $('#txtStudentID').val(), "email": $('#txtEmail').val(), "password": $('#txtPassword').val() } ),
+          success: function(data){
+            console.log(data);
+            
+          }
+        });
+
+      });    
+    });
+</script>
+
+</body>
+</html>
+
